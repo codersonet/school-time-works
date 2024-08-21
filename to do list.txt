@@ -1,0 +1,5 @@
+• install 3 extensions ( cobalt 2 theme, material icon theme or fluent icon, rapidAPI client).
+
+• install 'cascadia code' from ( https://github.com/microsoft/cascadia-code/releases/download/v2404.23/CascadiaCode-2404.23.zip ), 
+after downloading extract and then go to settings of vs code write "cascadia code" in font and all set.
+
