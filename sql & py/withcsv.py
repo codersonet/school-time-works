@@ -220,7 +220,7 @@ def main():
                 display_table_schema(conn, table_name)
 
             elif choice == '8':
-                table_name = input("Enter table name: ").
+                table_name = input("Enter table name: ").strip()
                 select_columns = input("Enter columns to select (comma-separated, or * for all): ").strip().split(',')
                 where_clause = input("Enter WHERE clause (optional): ").strip()
                 custom_query(conn, table_name, select_columns, where_clause)
