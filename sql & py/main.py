@@ -89,22 +89,22 @@ def main():
             print("6. Query data")
             print("7. Exit")
 
-            choice = input("Enter choice: ")
+            choice = input("Enter choice: ").strip()
 
             if choice == '1':
-                table_name = input("Enter table name: ")
+                table_name = input("Enter table name: ").strip()
                 columns = {}
                 while True:
-                    column_name = input("Enter column name (or type 'done' to finish): ")
+                    column_name = input("Enter column name (or type 'done' to finish): ").strip()
                     if column_name.lower() == 'done':
                         break
-                    column_type = input("Enter column type (INT, VARCHAR, CHAR): ").upper()
+                    column_type = input("Enter column type (INT, VARCHAR, CHAR): ").strip().upper()
                     if column_type == 'VARCHAR':
-                        length = input("Enter length for VARCHAR (e.g., 255): ")
+                        length = input("Enter length for VARCHAR (e.g., 255): ").strip()
                         columns[column_name] = f"{column_type}({length})"
                     elif column_type in ['INT', 'CHAR']:
                         if column_type == 'CHAR':
-                            length = input("Enter length for CHAR (e.g., 10): ")
+                            length = input("Enter length for CHAR (e.g., 10): ").strip()
                             columns[column_name] = f"{column_type}({length})"
                         else:
                             columns[column_name] = column_type
@@ -114,42 +114,43 @@ def main():
                 print("Table created successfully.")
 
             elif choice == '2':
-                table_name = input("Enter table name to delete: ")
+                table_name = input("Enter table name to delete: ").strip()
                 delete_table(conn, table_name)
                 print("Table deleted successfully.")
 
             elif choice == '3':
-                table_name = input("Enter table name: ")
+                table_name = input("Enter table name: ").strip()
                 data = {}
                 while True:
-                    column_name = input("Enter column name (or type 'done' to finish): ")
+                    column_name = input("Enter column name (or type 'done' to finish): ").strip()
                     if column_name.lower() == 'done':
                         break
-                    value = input(f"Enter value for {column_name}: ")
+                    value = input(f"Enter value for {column_name}: ").strip()
                     data[column_name] = value
                 insert_data(conn, table_name, data)
                 print("Data inserted successfully.")
 
             elif choice == '4':
-                table_name = input("Enter table name: ")
-                where_clause = input("Enter where clause (e.g., id = %s): ")
-                params = input("Enter parameters for where clause, separated by commas: ").split(',')
+                table_name = input("Enter table name: ").strip()
+                where_clause = input("Enter where clause (e.g., id = %s): ").strip()
+                params = input("Enter parameters for where clause, separated by commas: ").strip().split(',')
                 delete_data(conn, table_name, where_clause, params)
                 print("Data deleted successfully.")
 
             elif choice == '5':
-                table_name = input("Enter table name: ")
-                set_clause = input("Enter set clause (e.g., name = %s, age = %s): ")
-                where_clause = input("Enter where clause (e.g., id = %s): ")
-                params = input("Enter parameters for set clause and where clause, separated by commas: ").split(',')
+                table_name = input("Enter table name: ").strip()
+                set_clause = input("Enter set clause (e.g., name = %s, age = %s): ").strip()
+                where_clause = input("Enter where clause (e.g., id = %s): ").strip()
+                params = input("Enter parameters for set clause and where clause, separated by commas: ").strip().split(',')
                 update_data(conn, table_name, set_clause, where_clause, params)
                 print("Data updated successfully.")
 
             elif choice == '6':
-                table_name = input("Enter table name: ")
+                table_name = input("Enter table name: ").strip()
                 query_data(conn, table_name)
 
             elif choice == '7':
+                print("Exiting...")
                 break
 
             else:
