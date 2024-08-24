@@ -5,11 +5,9 @@ def connect_to_db(host, user, password, database=None):
     """Connect to the MySQL database."""
     try:
         if database:
-            conn = c.connect(host=host, user=user, password=password, database=database
-            )
+            conn = c.connect(host=host, user=user, password=password, database=database)
         else:
-            conn = c.connect(host=host, user=user, password=password
-            )
+            conn = c.connect(host=host, user=user, password=password)
         if conn.is_connected():
             print("Connected to MySQL database")
             return conn
