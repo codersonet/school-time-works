@@ -53,10 +53,15 @@ def insert_data(conn, table_name, data):
     if not table_exists(conn, table_name):
         print(f"Table '{table_name}' does not exist.")
         return
-    columns = ', '.join(data.keys())
+    columns_query = f"SHOW COLUMNS FROM {table_name}"
+    columns = execute_query(conn, columns_query)
+    if len(data) != len(columns):
+        print(f"Error: Expected {len(columns)} values, but got {len(data)}.")
+        return
+    columns_names = ', '.join([col[0] for col in columns])
     placeholders = ', '.join(['%s'] * len(data))
-    query = f"INSERT INTO {table_name} ({columns}) VALUES ({placeholders})"
-    execute_query(conn, query, tuple(data.values()))
+    query = f"INSERT INTO {table_name} ({columns_names}) VALUES ({placeholders})"
+    execute_query(conn, query, tuple(data))
     print("Data inserted successfully.")
 
 def delete_data(conn, table_name, where_clause, params):
@@ -182,16 +187,15 @@ def main():
 
             elif choice == '3':
                 table_name = input("Enter table name: ").strip()
-                data = {}
-                while True:
-                    column_name = input("Enter column name (or type 'done' to finish): ").strip()
-                    if column_name.lower() == 'done':
-                        break
-                    if not column_exists(conn, table_name, column_name):
-                        print(f"Column '{column_name}' does not exist in table '{table_name}'.")
-                        continue
-                    value = input(f"Enter value for {column_name}: ").strip()
-                    data[column_name] = value
+                columns_query = f"SHOW COLUMNS FROM {table_name}"
+                columns = execute_query(conn, columns_query)
+                if columns is None or len(columns) == 0:
+                    print(f"Table '{table_name}' does not exist or has no columns.")
+                    continue
+                data = []
+                for col in columns:
+                    value = input(f"Enter value for {col[0]} ({col[1]}): ").strip()
+                    data.append(value)
                 insert_data(conn, table_name, data)
 
             elif choice == '4':
@@ -216,7 +220,7 @@ def main():
                 display_table_schema(conn, table_name)
 
             elif choice == '8':
-                table_name = input("Enter table name: ").strip()
+                table_name = input("Enter table name: ").
                 select_columns = input("Enter columns to select (comma-separated, or * for all): ").strip().split(',')
                 where_clause = input("Enter WHERE clause (optional): ").strip()
                 custom_query(conn, table_name, select_columns, where_clause)
