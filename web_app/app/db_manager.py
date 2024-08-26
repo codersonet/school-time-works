@@ -2,12 +2,13 @@
 
 import mysql.connector as c
 from mysql.connector import Error
+from .config import config
 import csv
 
-def connect_to_db(host, user, password, database=None):
+def connect_to_db(host=config.HOST, user=config.USER, password=config.PASSWORD, database=None):
     """Connect to the MySQL database."""
     try:
-        conn = c.connect(host=host, user=user, password=password, database=database)
+        conn = c.connect(host=config.HOST, user=config.USER, password=config.PASSWORD, database=config.DATABASE)
         if conn.is_connected():
             print("Connected to MySQL database")
             return conn
