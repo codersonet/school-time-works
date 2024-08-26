@@ -1,7 +1,5 @@
-# app/routes.py
-
 from flask import Blueprint, request, jsonify
-from .db_manager import *
+from .db_manager import connect_to_db, create_table, delete_table, insert_data, delete_data, update_data, query_data, display_table_schema, custom_query, export_to_csv, import_from_csv
 
 routes = Blueprint('routes', __name__)
 
@@ -13,9 +11,16 @@ def create_table_route():
     columns = data.get('columns')
     conn = connect_to_db()
     if conn:
-        create_table(conn, table_name, columns)
-        conn.close()
-    return jsonify({"message": f"Table '{table_name}' created successfully."})
+        try:
+            create_table(conn, table_name, columns)
+            message = f"Table '{table_name}' created successfully."
+        except Exception as e:
+            message = str(e)
+        finally:
+            conn.close()
+    else:
+        message = "Database connection failed."
+    return jsonify({"message": message})
 
 # Route to delete a table
 @routes.route('/delete_table', methods=['POST'])
@@ -24,9 +29,16 @@ def delete_table_route():
     table_name = data.get('table_name')
     conn = connect_to_db()
     if conn:
-        delete_table(conn, table_name)
-        conn.close()
-    return jsonify({"message": f"Table '{table_name}' deleted successfully."})
+        try:
+            delete_table(conn, table_name)
+            message = f"Table '{table_name}' deleted successfully."
+        except Exception as e:
+            message = str(e)
+        finally:
+            conn.close()
+    else:
+        message = "Database connection failed."
+    return jsonify({"message": message})
 
 # Route to insert data into a table
 @routes.route('/insert_data', methods=['POST'])
@@ -36,9 +48,16 @@ def insert_data_route():
     values = data.get('values')
     conn = connect_to_db()
     if conn:
-        insert_data(conn, table_name, values)
-        conn.close()
-    return jsonify({"message": "Data inserted successfully."})
+        try:
+            insert_data(conn, table_name, values)
+            message = "Data inserted successfully."
+        except Exception as e:
+            message = str(e)
+        finally:
+            conn.close()
+    else:
+        message = "Database connection failed."
+    return jsonify({"message": message})
 
 # Route to delete data from a table
 @routes.route('/delete_data', methods=['POST'])
@@ -49,9 +68,16 @@ def delete_data_route():
     params = data.get('params')
     conn = connect_to_db()
     if conn:
-        delete_data(conn, table_name, where_clause, params)
-        conn.close()
-    return jsonify({"message": "Data deleted successfully."})
+        try:
+            delete_data(conn, table_name, where_clause, params)
+            message = "Data deleted successfully."
+        except Exception as e:
+            message = str(e)
+        finally:
+            conn.close()
+    else:
+        message = "Database connection failed."
+    return jsonify({"message": message})
 
 # Route to update data in a table
 @routes.route('/update_data', methods=['POST'])
@@ -63,9 +89,16 @@ def update_data_route():
     params = data.get('params')
     conn = connect_to_db()
     if conn:
-        update_data(conn, table_name, set_clause, where_clause, params)
-        conn.close()
-    return jsonify({"message": "Data updated successfully."})
+        try:
+            update_data(conn, table_name, set_clause, where_clause, params)
+            message = "Data updated successfully."
+        except Exception as e:
+            message = str(e)
+        finally:
+            conn.close()
+    else:
+        message = "Database connection failed."
+    return jsonify({"message": message})
 
 # Route to query data from a table
 @routes.route('/query_data', methods=['POST'])
@@ -74,9 +107,16 @@ def query_data_route():
     table_name = data.get('table_name')
     conn = connect_to_db()
     if conn:
-        rows = query_data(conn, table_name)
-        conn.close()
-    return jsonify({"data": rows})
+        try:
+            rows = query_data(conn, table_name)
+            result = {"data": rows}
+        except Exception as e:
+            result = {"error": str(e)}
+        finally:
+            conn.close()
+    else:
+        result = {"error": "Database connection failed."}
+    return jsonify(result)
 
 # Route to display table schema
 @routes.route('/display_schema', methods=['POST'])
@@ -85,9 +125,16 @@ def display_schema_route():
     table_name = data.get('table_name')
     conn = connect_to_db()
     if conn:
-        schema = display_table_schema(conn, table_name)
-        conn.close()
-    return jsonify({"schema": schema})
+        try:
+            schema = display_table_schema(conn, table_name)
+            result = {"schema": schema}
+        except Exception as e:
+            result = {"error": str(e)}
+        finally:
+            conn.close()
+    else:
+        result = {"error": "Database connection failed."}
+    return jsonify(result)
 
 # Route for a custom query
 @routes.route('/custom_query', methods=['POST'])
@@ -98,9 +145,16 @@ def custom_query_route():
     where_clause = data.get('where_clause')
     conn = connect_to_db()
     if conn:
-        rows = custom_query(conn, table_name, select_columns, where_clause)
-        conn.close()
-    return jsonify({"data": rows})
+        try:
+            rows = custom_query(conn, table_name, select_columns, where_clause)
+            result = {"data": rows}
+        except Exception as e:
+            result = {"error": str(e)}
+        finally:
+            conn.close()
+    else:
+        result = {"error": "Database connection failed."}
+    return jsonify(result)
 
 # Route to export data to CSV
 @routes.route('/export_csv', methods=['POST'])
@@ -110,9 +164,16 @@ def export_csv_route():
     file_name = data.get('file_name')
     conn = connect_to_db()
     if conn:
-        export_to_csv(conn, table_name, file_name)
-        conn.close()
-    return jsonify({"message": f"Data exported to {file_name} successfully."})
+        try:
+            export_to_csv(conn, table_name, file_name)
+            message = f"Data exported to {file_name} successfully."
+        except Exception as e:
+            message = str(e)
+        finally:
+            conn.close()
+    else:
+        message = "Database connection failed."
+    return jsonify({"message": message})
 
 # Route to import data from CSV
 @routes.route('/import_csv', methods=['POST'])
@@ -122,7 +183,13 @@ def import_csv_route():
     file_name = data.get('file_name')
     conn = connect_to_db()
     if conn:
-        import_from_csv(conn, table_name, file_name)
-        conn.close()
-    return jsonify({"message": f"Data imported from {file_name} successfully."})
-    
+        try:
+            import_from_csv(conn, table_name, file_name)
+            message = f"Data imported from {file_name} successfully."
+        except Exception as e:
+            message = str(e)
+        finally:
+            conn.close()
+    else:
+        message = "Database connection failed."
+    return jsonify({"message": message})
