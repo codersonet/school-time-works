@@ -6,4 +6,6 @@
 
 --> run pip install -r requirements.txt
 
+--> run secret key generator script, it will generate key, and put it in .env
+
 --> starts with "python run.py"
