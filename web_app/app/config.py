@@ -1,9 +1,11 @@
 # app/config.py
 import os
+from dotenv import load_dotenv
+
+load_dotenv()  # Load environment variables from a .env file
 
 class Config:
-    # Use the environment variable if set, otherwise default to a secure key
-    SECRET_KEY = os.environ.get('SECRET_KEY', 'your_generated_secret_key_here')
+    SECRET_KEY = os.getenv('SECRET_KEY')  # Use the secret key from the .env file
     HOST = 'localhost'
     USER = 'root'
     PASSWORD = '1234'
