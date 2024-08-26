@@ -5,7 +5,7 @@ from mysql.connector import Error
 from .config import config
 import csv
 
-def connect_to_db(#host=config.HOST, user=config.USER, password=config.PASSWORD, database=None):
+def connect_to_db():
     """Connect to the MySQL database."""
     try:
         conn = c.connect(host=config.HOST, user=config.USER, password=config.PASSWORD, database=config.DATABASE)
