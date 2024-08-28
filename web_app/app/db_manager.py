@@ -2,7 +2,7 @@
 
 import mysql.connector as c
 from mysql.connector import Error
-from .config import config
+from app.config import config
 import csv
 
 def connect_to_db():
