@@ -9,4 +9,4 @@ class Config:
     HOST = os.getenv('HOST')
     USER = os.getenv('USER')
     PASSWORD = os.getenv('PASSWORD')
-    DATABASE = os.getenv('DATABASE') # database edited
+    DATABASE = os.getenv('DATABASE')
