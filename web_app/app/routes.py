@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
 from .db_manager import connect_to_db, create_table, delete_table, insert_data, delete_data, update_data, query_data, display_table_schema, custom_query, export_to_csv, import_from_csv
+from .logging import log_action
 
 routes = Blueprint('routes', __name__)
 
