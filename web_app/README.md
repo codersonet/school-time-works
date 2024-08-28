@@ -3,7 +3,7 @@
 
 --> run python -m venv venv
 
---> run venv\Scripts\activate
+--> run .venv\Scripts\activate
 
 --> run pip install python-dotenv
 
