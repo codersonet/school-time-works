@@ -7,111 +7,154 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>MySQL Database Manager</h1>
+    <div class="container">
+        <h1>MySQL Database Manager</h1>
 
-    <!-- Create Table -->
-    <form id="createTableForm">
-        <h3>Create Table</h3>
-        <label for="tableName">Table Name:</label>
-        <input type="text" id="tableName" name="tableName">
-        <label for="columns">Columns (name:type,name:type):</label>
-        <input type="text" id="columns" name="columns">
-        <button type="submit">Create Table</button>
-    </form>
+        <!-- Create Table -->
+        <form id="createTableForm" class="form-group">
+            <h3>Create Table</h3>
+            <div class="input-group">
+                <label for="tableName">Table Name:</label>
+                <input type="text" id="tableName" name="tableName" placeholder="Table Name">
+            </div>
+            <div class="input-group">
+                <label for="columns">Columns (name:type,name:type):</label>
+                <input type="text" id="columns" name="columns" placeholder="Columns">
+            </div>
+            <button type="submit">Create Table</button>
+        </form>
 
-    <!-- Delete Table -->
-    <form id="deleteTableForm">
-        <h3>Delete Table</h3>
-        <label for="deleteTableName">Table Name:</label>
-        <input type="text" id="deleteTableName" name="deleteTableName">
-        <button type="submit">Delete Table</button>
-    </form>
+        <!-- Delete Table -->
+        <form id="deleteTableForm" class="form-group">
+            <h3>Delete Table</h3>
+            <div class="input-group">
+                <label for="deleteTableName">Table Name:</label>
+                <input type="text" id="deleteTableName" name="deleteTableName" placeholder="Table Name">
+            </div>
+            <button type="submit">Delete Table</button>
+        </form>
 
-    <!-- Insert Data -->
-    <form id="insertDataForm">
-        <h3>Insert Data</h3>
-        <label for="insertTableName">Table Name:</label>
-        <input type="text" id="insertTableName" name="insertTableName">
-        <label for="values">Values (comma-separated):</label>
-        <input type="text" id="values" name="values">
-        <button type="submit">Insert Data</button>
-    </form>
+        <!-- Insert Data -->
+        <form id="insertDataForm" class="form-group">
+            <h3>Insert Data</h3>
+            <div class="input-group">
+                <label for="insertTableName">Table Name:</label>
+                <input type="text" id="insertTableName" name="insertTableName" placeholder="Table Name">
+            </div>
+            <div class="input-group">
+                <label for="values">Values (comma-separated):</label>
+                <input type="text" id="values" name="values" placeholder="Values">
+            </div>
+            <button type="submit">Insert Data</button>
+        </form>
 
-    <!-- Delete Data -->
-    <form id="deleteDataForm">
-        <h3>Delete Data</h3>
-        <label for="deleteDataTableName">Table Name:</label>
-        <input type="text" id="deleteDataTableName" name="deleteDataTableName">
-        <label for="whereClause">Where Clause (e.g., id = 1):</label>
-        <input type="text" id="whereClause" name="whereClause">
-        <label for="params">Params (comma-separated):</label>
-        <input type="text" id="params" name="params">
-        <button type="submit">Delete Data</button>
-    </form>
+        <!-- Delete Data -->
+        <form id="deleteDataForm" class="form-group">
+            <h3>Delete Data</h3>
+            <div class="input-group">
+                <label for="deleteDataTableName">Table Name:</label>
+                <input type="text" id="deleteDataTableName" name="deleteDataTableName" placeholder="Table Name">
+            </div>
+            <div class="input-group">
+                <label for="whereClause">Where Clause (e.g., id = 1):</label>
+                <input type="text" id="whereClause" name="whereClause" placeholder="Where Clause">
+            </div>
+            <div class="input-group">
+                <label for="params">Params (comma-separated):</label>
+                <input type="text" id="params" name="params" placeholder="Params">
+            </div>
+            <button type="submit">Delete Data</button>
+        </form>
 
-    <!-- Update Data -->
-    <form id="updateDataForm">
-        <h3>Update Data</h3>
-        <label for="updateTableName">Table Name:</label>
-        <input type="text" id="updateTableName" name="updateTableName">
-        <label for="setClause">Set Clause (e.g., name = 'John'):</label>
-        <input type="text" id="setClause" name="setClause">
-        <label for="updateWhereClause">Where Clause (e.g., id = 1):</label>
-        <input type="text" id="updateWhereClause" name="updateWhereClause">
-        <label for="updateParams">Params (comma-separated):</label>
-        <input type="text" id="updateParams" name="updateParams">
-        <button type="submit">Update Data</button>
-    </form>
+        <!-- Update Data -->
+        <form id="updateDataForm" class="form-group">
+            <h3>Update Data</h3>
+            <div class="input-group">
+                <label for="updateTableName">Table Name:</label>
+                <input type="text" id="updateTableName" name="updateTableName" placeholder="Table Name">
+            </div>
+            <div class="input-group">
+                <label for="setClause">Set Clause (e.g., name = 'John'):</label>
+                <input type="text" id="setClause" name="setClause" placeholder="Set Clause">
+            </div>
+            <div class="input-group">
+                <label for="updateWhereClause">Where Clause (e.g., id = 1):</label>
+                <input type="text" id="updateWhereClause" name="updateWhereClause" placeholder="Where Clause">
+            </div>
+            <div class="input-group">
+                <label for="updateParams">Params (comma-separated):</label>
+                <input type="text" id="updateParams" name="updateParams" placeholder="Params">
+            </div>
+            <button type="submit">Update Data</button>
+        </form>
 
-    <!-- Query Data -->
-    <form id="queryDataForm">
-        <h3>Query Data</h3>
-        <label for="queryTableName">Table Name:</label>
-        <input type="text" id="queryTableName" name="queryTableName">
-        <button type="submit">Query Data</button>
-    </form>
+        <!-- Query Data -->
+        <form id="queryDataForm" class="form-group">
+            <h3>Query Data</h3>
+            <div class="input-group">
+                <label for="queryTableName">Table Name:</label>
+                <input type="text" id="queryTableName" name="queryTableName" placeholder="Table Name">
+            </div>
+            <button type="submit">Query Data</button>
+        </form>
 
-    <!-- Display Table Schema -->
-    <form id="displaySchemaForm">
-        <h3>Display Table Schema</h3>
-        <label for="schemaTableName">Table Name:</label>
-        <input type="text" id="schemaTableName" name="schemaTableName">
-        <button type="submit">Display Schema</button>
-    </form>
+        <!-- Display Table Schema -->
+        <form id="displaySchemaForm" class="form-group">
+            <h3>Display Table Schema</h3>
+            <div class="input-group">
+                <label for="schemaTableName">Table Name:</label>
+                <input type="text" id="schemaTableName" name="schemaTableName" placeholder="Table Name">
+            </div>
+            <button type="submit">Display Schema</button>
+        </form>
 
-    <!-- Custom Query -->
-    <form id="customQueryForm">
-        <h3>Custom Query</h3>
-        <label for="customQueryTableName">Table Name:</label>
-        <input type="text" id="customQueryTableName" name="customQueryTableName">
-        <label for="selectColumns">Select Columns (comma-separated):</label>
-        <input type="text" id="selectColumns" name="selectColumns">
-        <label for="customWhereClause">Where Clause (optional):</label>
-        <input type="text" id="customWhereClause" name="customWhereClause">
-        <button type="submit">Execute Query</button>
-    </form>
+        <!-- Custom Query -->
+        <form id="customQueryForm" class="form-group">
+            <h3>Custom Query</h3>
+            <div class="input-group">
+                <label for="customQueryTableName">Table Name:</label>
+                <input type="text" id="customQueryTableName" name="customQueryTableName" placeholder="Table Name">
+            </div>
+            <div class="input-group">
+                <label for="selectColumns">Select Columns (comma-separated):</label>
+                <input type="text" id="selectColumns" name="selectColumns" placeholder="Select Columns">
+            </div>
+            <div class="input-group">
+                <label for="customWhereClause">Where Clause (optional):</label>
+                <input type="text" id="customWhereClause" name="customWhereClause" placeholder="Where Clause">
+            </div>
+            <button type="submit">Execute Query</button>
+        </form>
 
-    <!-- Export to CSV -->
-    <form id="exportCsvForm">
-        <h3>Export to CSV</h3>
-        <label for="exportTableName">Table Name:</label>
-        <input type="text" id="exportTableName" name="exportTableName">
-        <label for="exportFileName">CSV File Name:</label>
-        <input type="text" id="exportFileName" name="exportFileName">
-        <button type="submit">Export Data</button>
-    </form>
+        <!-- Export to CSV -->
+        <form id="exportCsvForm" class="form-group">
+            <h3>Export to CSV</h3>
+            <div class="input-group">
+                <label for="exportTableName">Table Name:</label>
+                <input type="text" id="exportTableName" name="exportTableName" placeholder="Table Name">
+            </div>
+            <div class="input-group">
+                <label for="exportFileName">CSV File Name:</label>
+                <input type="text" id="exportFileName" name="exportFileName" placeholder="File Name">
+            </div>
+            <button type="submit">Export Data</button>
+        </form>
 
-    <!-- Import from CSV -->
-    <form id="importCsvForm">
-        <h3>Import from CSV</h3>
-        <label for="importTableName">Table Name:</label>
-        <input type="text" id="importTableName" name="importTableName">
-        <label for="importFileName">CSV File Name:</label>
-        <input type="text" id="importFileName" name="importFileName">
-        <button type="submit">Import Data</button>
-    </form>
+        <!-- Import from CSV -->
+        <form id="importCsvForm" class="form-group">
+            <h3>Import from CSV</h3>
+            <div class="input-group">
+                <label for="importTableName">Table Name:</label>
+                <input type="text" id="importTableName" name="importTableName" placeholder="Table Name">
+            </div>
+            <div class="input-group">
+                <label for="importFileName">CSV File Name:</label>
+                <input type="text" id="importFileName" name="importFileName" placeholder="File Name">
+            </div>
+            <button type="submit">Import Data</button>
+        </form>
+    </div>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
-
