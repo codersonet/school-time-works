@@ -1,68 +1,167 @@
-/* static/css/styles.css */
+/*styles.css*/
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  padding: 1em;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  color: #b9b9b9;
+  background-color: #e3e3e3;
 }
 
 h1 {
-    text-align: center;
-    color: #333;
-    padding: 20px;
-    background-color: #007bff;
-    color: #fff;
-    margin: 0;
-}
-
-form {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 20px auto;
-    padding: 20px;
-    max-width: 600px;
+  text-align: center;
+  color: #f0a500;
+  margin-bottom: 1em;
 }
 
 h3 {
-    color: #007bff;
-    margin-top: 0;
+  color: #f0a500;
 }
 
-label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #333;
+.container {
+  max-width: 90%;
+  padding: 1em 2em;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 4.2px;
+  box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
 }
 
-input[type="text"] {
-    width: calc(100% - 22px);
-    padding: 10px;
-    margin-bottom: 16px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
+.form-group {
+  margin-bottom: 1.5em;
+}
+
+.input-group {
+  margin-bottom: 1em;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5em;
+  color: #b9b9b9;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 1em;
+  line-height: 1.4;
+  background-color: #f9f9f9;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  transition: 0.35s ease-in-out;
+}
+
+input:focus,
+select:focus {
+  outline: 0;
+  border-color: #bd8200;
+}
+
+input:focus + .input-icon i,
+select:focus {
+  color: #f0a500;
 }
 
 button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  background-color: #f0a500;
+  color: #fff;
+  border: none;
+  padding: 0.7em 1.5em;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.35s ease-in-out;
 }
 
 button:hover {
-    background-color: #0056b3;
+  background-color: #bd8200;
 }
 
-form:not(:last-of-type) {
-    margin-bottom: 30px;
+.input-group-icon {
+  position: relative;
 }
 
+.input-group-icon input {
+  padding-left: 4.4em;
+}
+
+.input-group-icon .input-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3.4em;
+  height: 3.4em;
+  line-height: 3.4em;
+  text-align: center;
+  pointer-events: none;
+}
+
+.input-group-icon .input-icon:after {
+  position: absolute;
+  top: 0.6em;
+  bottom: 0.6em;
+  left: 3.4em;
+  display: block;
+  border-right: 1px solid #e5e5e5;
+  content: "";
+  transition: all 0.35s ease-in-out;
+}
+
+.input-group-icon .input-icon i {
+  transition: all 0.35s ease-in-out;
+}
+
+/* Responsive adjustments */
+@media only screen and (max-width: 1200px) {
+  .container {
+    max-width: 80%;
+    padding: 1em 1.5em;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .container {
+    max-width: 90%;
+    padding: 1em;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .input-group {
+    margin-bottom: 1.5em;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .input-group {
+    margin-bottom: 1.5em;
+  }
+
+  .form-group {
+    margin-bottom: 1em;
+  }
+
+  .input-group label {
+    font-size: 14px;
+  }
+
+  input,
+  select {
+    font-size: 14px;
+    padding: 0.8em;
+  }
+
+  button {
+    padding: 0.5em;
+    font-size: 14px;
+  }
+}
