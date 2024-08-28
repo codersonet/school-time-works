@@ -9,7 +9,7 @@ def setup_logging():
     if not os.path.exists('app/logs'):
         os.makedirs('app/logs')
 
-    handler = RotatingFileHandler(log_file, maxBytes=100000, backupCount=5000) # Set a high backup count to ensure no deletion of old files
+    handler = RotatingFileHandler(log_file, maxBytes=100000, backupCount=5000) # Set a high value of backup count to ensure your old files donget deleted
     formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
     handler.setFormatter(formatter)
 
@@ -17,11 +17,10 @@ def setup_logging():
     logger.setLevel(logging.INFO)
     logger.addHandler(handler)
 
-    return logger
-
-# Log an action
 def log_action(action, details):
-    logger = setup_logging()
-    log_message = f"DateTime: {datetime.now()} - INFO - Action: {action} | Details: {details}"
+    logger = logging.getLogger()
+    log_message = f"Action: {action} | Details: {details}"
     logger.info(log_message)
-  
+
+# Call setup_logging() to configure logging when module is imported
+setup_logging()
