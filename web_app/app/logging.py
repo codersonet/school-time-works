@@ -22,6 +22,6 @@ def setup_logging():
 # Log an action
 def log_action(action, details):
     logger = setup_logging()
-    log_message = f"Action: {action}, Details: {details}, DateTime: {datetime.now()}"
+    log_message = f"DateTime: {datetime.now()} - INFO - Action: {action} | Details: {details}"
     logger.info(log_message)
   
