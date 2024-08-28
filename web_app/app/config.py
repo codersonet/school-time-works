@@ -9,4 +9,4 @@ class Config:
     HOST = os.getenv('HOST')
     USER = os.getenv('USER')
     PASSWORD = os.getenv('PASSWORD')
-    NAME = os.getenv('NAME')
+    DNAME = os.getenv('DNAME')
