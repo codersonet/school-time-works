@@ -9,7 +9,7 @@ def setup_logging():
     if not os.path.exists('app/logs'):
         os.makedirs('app/logs')
 
-    handler = RotatingFileHandler(log_file, maxBytes=100000, backupCount=5)
+    handler = RotatingFileHandler(log_file, maxBytes=100000, backupCount=5000) # Set a high backup count to ensure no deletion of old files
     formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
     handler.setFormatter(formatter)
 
