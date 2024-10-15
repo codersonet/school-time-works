@@ -1,11 +1,12 @@
-import mysql.connector
+import mysql.connector as myconn
 from mysql.connector import Error
 
 def create_connection(): #Establish a connection to the MySQL database.
     connection = None
     try:
-        connection = mysql.connector.connect(host='localhost',database='csproject',
-            user='root', 
+        connection = myconn.connect(host='localhost',
+            database='csproject',
+            user='root',
             password='1234')  # Replace with your MySQL credentials
         if connection.is_connected():
             print("Connection to MySQL database was successful.")
@@ -17,84 +18,75 @@ def create_connection(): #Establish a connection to the MySQL database.
         if connection and not connection.is_connected():
             print("Failed to connect to MySQL.")
 
-def add_student(connection):
-    #Add a student to the database.
+def add_student(connection): #Add a student to the database.
     name = input("Enter student name: ")
     age = int(input("Enter student age: "))
     grade = input("Enter student grade: ")
-    cursor = connection.cursor()
+    mycursor = connection.cursor()
     query = "INSERT INTO students (name, age, grade) VALUES (%s, %s, %s)"
-    cursor.execute(query, (name, age, grade))
+    mycursor.execute(query, (name, age, grade))
     connection.commit()
     print("Student added successfully!")
 
-def display_students(connection):
-    #Display all students in the database.
-    cursor = connection.cursor()
-    cursor.execute("SELECT * FROM students")
-    rows = cursor.fetchall()
+def display_students(connection): #Display all students in the database.
+    mycursor = connection.cursor()
+    mycursor.execute("SELECT * FROM students")
+    rows = mycursor.fetchall()
     for row in rows:
         print(row)
 
-def update_student(connection):
-    #Update a student's details.
+def update_student(connection): #Update a student's details.
     student_id = int(input("Enter student ID to update: "))
     new_name = input("Enter new name: ")
     new_age = int(input("Enter new age: "))
     new_grade = input("Enter new grade: ")
-    cursor = connection.cursor()
+    mycursor = connection.cursor()
     query = "UPDATE students SET name = %s, age = %s, grade = %s WHERE id = %s"
-    cursor.execute(query, (new_name, new_age, new_grade, student_id))
+    mycursor.execute(query, (new_name, new_age, new_grade, student_id))
     connection.commit()
     print("Student updated successfully!")
 
-def delete_student(connection):
-    #Delete a student from the database.
+def delete_student(connection): #Delete a student from the database.
     student_id = int(input("Enter student ID to delete: "))
-    cursor = connection.cursor()
+    mycursor = connection.cursor()
     query = "DELETE FROM students WHERE id = %s"
-    cursor.execute(query, (student_id,))
+    mycursor.execute(query, (student_id,))
     connection.commit()
     print("Student deleted successfully!")
 
-def students_by_grade(connection):
-    #Display students filtered by grade.
+def students_by_grade(connection): #Display students filtered by grade.
     grade = input("Enter grade to filter: ")
-    cursor = connection.cursor()
+    mycursor = connection.cursor()
     query = "SELECT * FROM students WHERE grade = %s"
-    cursor.execute(query, (grade,))
-    rows = cursor.fetchall()
+    mycursor.execute(query, (grade,))
+    rows = mycursor.fetchall()
     for row in rows:
         print(row)
 
-def average_age(connection):
-    #Calculate and display the average age of students.
-    cursor = connection.cursor()
+def average_age(connection): #Calculate and display the average age of students.
+    mycursor = connection.cursor()
     query = "SELECT AVG(age) FROM students"
-    cursor.execute(query)
-    avg_age = cursor.fetchone()[0]
+    mycursor.execute(query)
+    avg_age = mycursor.fetchone()[0]
     print(f"The average age of students is {avg_age}")
 
-def total_students(connection):
-    #Display the total number of students.
-    cursor = connection.cursor()
+def total_students(connection): #Display the total number of students.
+    mycursor = connection.cursor()
     query = "SELECT COUNT(*) FROM students"
-    cursor.execute(query)
-    total = cursor.fetchone()[0]
+    mycursor.execute(query)
+    total = mycursor.fetchone()[0]
     print(f"Total number of students: {total}")
 
-def oldest_student(connection):
-    #Display the oldest student.
-    cursor = connection.cursor()
+def oldest_student(connection): #Display the oldest student.
+    mycursor = connection.cursor()
     query = "SELECT * FROM students ORDER BY age DESC LIMIT 1"
-    cursor.execute(query)
-    student = cursor.fetchone()
+    mycursor.execute(query)
+    student = mycursor.fetchone()
     print(f"The oldest student is: {student}")
 
-def drop_students_table(connection):
-    #Drop the students table.
-    cursor = connection.cursor()
-    cursor.execute("DROP TABLE IF EXISTS students")
+def drop_students_table(connection): #Drop the students table.
+    mycursor = connection.cursor()
+    mycursor.execute("DROP TABLE IF EXISTS students")
     connection.commit()
     print("Students table dropped.")
 
@@ -145,4 +137,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-  
