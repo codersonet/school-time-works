@@ -1,5 +1,5 @@
 import mysql.connector as myconn
-from mysql.connector import Error
+from mysql.connector import Error as e
 
 def create_connection(): #Establish a connection to the MySQL database.
     connection = None
@@ -10,7 +10,7 @@ def create_connection(): #Establish a connection to the MySQL database.
         if connection.is_connected():
             print("Connection to MySQL database was successful.")
             return connection
-    except Error as e:
+    except e as Error:
         print(f"Error while connecting to MySQL: {e}")
         return None
     finally:
