@@ -4,9 +4,8 @@ from mysql.connector import Error
 def create_connection(): #Establish a connection to the MySQL database.
     connection = None
     try:
-        connection = myconn.connect(host='localhost',
-            database='csproject',
-            user='root',
+        connection = myconn.connect(host='localhost',user='root',
+            database='student_management',
             password='1234')  # Replace with your MySQL credentials
         if connection.is_connected():
             print("Connection to MySQL database was successful.")
