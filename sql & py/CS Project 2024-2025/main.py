@@ -10,8 +10,8 @@ def create_connection(): #Establish a connection to the MySQL database.
         if connection.is_connected():
             print("Connection to MySQL database was successful.")
             return connection
-    except e as Error:
-        print(f"Error while connecting to MySQL: {e}")
+    except e as error:
+        print(f"Error while connecting to MySQL: {error}")
         return None
     finally:
         if connection and not connection.is_connected():
