@@ -1,2 +1,2 @@
 # school-project
-( under observation not yet successful)
+( completed successfully #januray 2025 )
