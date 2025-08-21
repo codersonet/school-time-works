@@ -1,2 +1,2 @@
 # school-project
-( completed successfully #januray 2025 )
+( completed successfully #January 2025 )
